@@ -19,7 +19,8 @@ public class BkstoreApplication {
 	@GetMapping
 	String greeting(Model model) {
 		model.addAttribute("greeting", "G'day mate!");
-		return "home";
+		//return "home";
+		return "index";
 	}
 
 }
