@@ -1,19 +1,83 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>Book List</head>
+<head>
+<div th:replace="fragments/fragments :: head"></div>
+<title>Book List</title>
+</head>
 
 <body>
 
-<table>
-	<tr>
-		<th>Title</th>
-		<th>Price</th>
-	</tr>
-	<tr th:each="book : ${books}">
-		<td th:text="${book.title}">My Book</td>
-		<td th:text="${book.price}">$19.99</td>
-	</tr>
-</table>
+<!-- Start Menu -->
+<div th:insert="fragments/fragments :: menu" />
+<!-- End Menu -->
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="container">
+	<div class="page-header">
+		<h1>All Books</h1>
+		<h2>All Available Books</h2>
+		<p class="lead">Check out these books!</p>
+	</div>
+	<table class="table table-bordered table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th></th>
+				<th>Title</th>
+				<th>Category</th>
+<!-- 				<th>Publisher</th> -->
+				<th>Description</th>
+				<th>Price</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tr th:each="book : ${books}">
+			<td><img
+				th:src="@{'/resources/images/'+${book.id}+'.png'}"
+				alt="image" style="width: 100%" /></td>
+			<td th:text="${book.title}">My Book</td>	
+			<td th:text="${book.category.name}">Fantasy</td>
+<!-- 			<td th:text="${book.publisher}">Warne</td> -->
+			<td th:text="${book.description}">In a hole...</td>
+			<td th:text="${book.price}">$19.99</td>
+			<td><a th:href="@{'/books/'+${book.id}}"><span
+					class="glyphicon glyphicon-info-sign">Info</span></a></td>
+		</tr>
+	</table>
+</div>
+
+  <div class="container">
+  	<div class="page-header">
+		<h2>More Books!</h2>
+
+		<p class="lead">Here are some of our favorites!</p>
+	</div>
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Harry Potter</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Heading</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Heading</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+
+    <hr>
+
+  </div> <!-- /container -->
+
+</main>
+<div th:insert="fragments/fragments :: footer" />
 </body>
 </html>

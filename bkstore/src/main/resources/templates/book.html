@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div th:replace="fragments/fragments :: head"></div>
+<title>LIst</title>
+</head>
+
+<body>
+
+<!-- Start Menu -->
+<div th:insert="fragments/fragments :: menu" />
+<!-- End Menu -->
+
+
+<div class="container">
+		<div class="page-header">
+            <h1 th:text="${book.title}">My Book</h1>
+
+            <p class="lead">Book Information</p>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <img th:src=""@{'/resources/images/'+${book.id}+'.png'}" 
+                    	alt="image" 
+						style="width:100%" />
+                </div>
+
+                <div class="col-md-5">
+                    <h3 th:text="${book.title}">My Book</h3>
+                    <p th:text="${book.description}">A description...</p>
+                    <p>
+                       <strong>Publisher</strong> :  Warne    
+                    </p>
+                    <p>
+                        <strong>Category</strong> : <span th:text="${book.category.name}">Fantasy</span>
+                    </p>
+                    <h4 th:text="'$' + ${book.price} + ' USD'">$29.99 USD</h4>
+                </div>
+            </div>
+        </div>
+</div>
+<div th:insert="fragments/fragments :: footer" />
+</body>
+</html>
