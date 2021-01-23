@@ -14,6 +14,7 @@ import com.gillo.bookstore.repositories.BookRepository;
  *
  * Created on Dec 9, 2020
  */
+
 @Service
 public class BookServiceImpl implements BookService {
 	
@@ -29,7 +30,6 @@ public class BookServiceImpl implements BookService {
 	public Set<Book> getAllBooks() {
 		Set<Book> books = new HashSet<>();
 		bookRepository.findAll().forEach(books::add);
-		//bookRepository.findAll().iterator().forEachRemaining(books::add);
 		return books;
 	}
 

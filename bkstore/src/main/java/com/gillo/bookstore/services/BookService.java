@@ -17,10 +17,10 @@ public interface BookService {
 	
 	Book getBookById(Long id);
 	
-	public void addBook(Book book);
+	void addBook(Book book);
 	
-	public void deleteBook(Long id);
+	void deleteBook(Long id);
 	
-	public void updateBook(Book book);
+	void updateBook(Book book);
 
 }
