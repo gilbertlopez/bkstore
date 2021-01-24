@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div th:replace="fragments/fragments :: header"></div>
+<title>Book List</title>
+</head>
+
+<body>
+
+<!-- Start Menu -->
+<div th:replace="fragments/fragments :: menu" />
+<!-- End Menu -->
+
+
+<div class="container">
+	<div class="page-header">
+		<br>
+		<br>
+		<br>
+		<h2>Book Inventory</h2>
+		<p class="lead">Current books in the catalog</p>
+	</div>
+    <div th:if="${success} eq true">
+        <p>Book added successfully!</p>
+    </div> 
+	<table class="table table-bordered table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th></th>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Category</th>
+				<th>Price</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tr th:each="book : ${books}">
+			<td><img
+				th:src="@{'/images/'+${book.id}+'.jpg'}"
+				alt="image" style="width: 100%" /></td>
+			<td th:text="${book.title}">My Book</td>	
+			<td th:text="${book.author}">Gilbert Lopez</td>
+			<td th:text="${book.category.name}">Fantasy</td>
+			<td th:text="'$' + ${book.price} + ' USD'">$19.99</td>
+			<td><a th:href="@{'/admin/book/'+${book.id}}"><span>Info</span></a>
+				<a th:href="@{'/admin/deleteBook/'+${book.id}}" 
+					onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false">
+					<span class="fa fa-trash-alt" style="font-size:24px;"></span></a>	
+					
+			</td>
+		</tr>
+	</table>
+</div>
+
+    <div class="container">
+      <p><a class="btn btn-primary btn-sm" th:href="@{'/admin/addBook'}" role="button">Add a book &raquo;</a></p>
+      <i class="fa fa-trash"></i>
+    </div>
+
+<div th:insert="fragments/fragments :: footer" />
+</body>
+</html>

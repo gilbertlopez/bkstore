@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div th:replace="fragments/fragments :: header"></div>
+<title>Book List</title>
+</head>
+
+<body>
+
+<!-- Start Menu -->
+<div th:insert="fragments/fragments :: menu" />
+<!-- End Menu -->
+
+<div class="container">
+	
+		<div class="page-header">
+			<br>
+			<br>
+			<br>
+			<h1>Administrator Page</h1>
+        </div>
+        
+        <div class="container">
+<!--         	<div th:if="${#authorization.expression('isAuthenticated()')}"> -->
+			<div>
+<!--         	<h3 th:inline="text">Welcome <span th:text="${request.remoteUser}">John Doe</span>! |  -->
+        		<h3 th:inline="text">Welcome <span>[[${#request.remoteUser}]]</span>! | 
+        		<a th:href="@{'/books'}">Logout</a></h3>
+        	</div>
+
+        </div>
+        
+        <div class="container">
+        	<p class="lead">Available administrative tasks.</p>
+        	<a th:href="@{'/admin/bookInventory'}" class="btn btn-primary">Manage Book Inventory</a>
+		</div>
+</div>
+<br>
+<div th:insert="fragments/fragments :: footer" />
+</body>
+</html>
