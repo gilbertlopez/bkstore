@@ -24,7 +24,7 @@
         <div class="container">
 		<p>Fields marked with an asterisk (*} are required </p>
 		
-         <form th:object="${book}" th:action="@{/admin/saveBook}" method="post">
+         <form th:object="${book}" th:action="@{/admin/saveBook}" method="post" enctype="multipart/form-data">
             <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
                 <p>Please Correct Errors Below</p>
             </div>  

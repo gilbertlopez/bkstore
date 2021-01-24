@@ -3,6 +3,8 @@ package com.gillo.bookstore.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gillo.bookstore.services.BookService;
 
@@ -12,6 +14,7 @@ import com.gillo.bookstore.services.BookService;
  * Created on Dec 9, 2020
  */
 @Controller
+@RequestMapping("books")
 public class AppController {
 	
 	private BookService bookService;
@@ -21,9 +24,21 @@ public class AppController {
 	}
 
 
-	@GetMapping("books")
+	@GetMapping
 	public String bookList(Model model) {
-		model.addAttribute("books", bookService.getBooks());
+		model.addAttribute("books", bookService.getAllBooks());
 		return "books";
+	}
+	
+	@GetMapping("authors/{name}")
+	public String authorList(@PathVariable String name, Model model) {
+		model.addAttribute("books", bookService.getBooksByAuthor(name));	
+		return "books";
+	}
+	
+	@GetMapping("{id}")
+	public String bookDetail(@PathVariable Long id, Model model) {
+		model.addAttribute("book", bookService.getBookById(id));	
+		return "book";
 	}
 }
