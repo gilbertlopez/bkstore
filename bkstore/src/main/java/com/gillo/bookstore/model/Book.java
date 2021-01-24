@@ -34,8 +34,8 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotEmpty(message = "Book title is required")
-	@Size(min=2, max=45, message = "Title must be between 2 and 45 characters long")
+	//@NotBlank(message = "Book title is required")
+	@Size(min=2, max=45)
 	private String title;
 	
 	@NotEmpty(message = "Author name is required")
@@ -65,7 +65,6 @@ public class Book {
     private Byte[] image;
 	
 	@ManyToOne
-	@NotBlank(message = "Category is required")
-	@Size(min=2, max=45, message = "Category must be between 2 and 45 characters long")
+	@NotNull(message = "Category is required")
 	private Category category;
 }
