@@ -2,23 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<div th:replace="fragments/fragments :: head"></div>
+<div th:replace="fragments/fragments :: header"></div>
 <title>Book List</title>
 </head>
 
 <body>
 
 <!-- Start Menu -->
-<div th:insert="fragments/fragments :: menu" />
+<div th:replace="fragments/fragments :: menu" />
 <!-- End Menu -->
 
-<main role="main">
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="container">
 	<div class="page-header">
-		<h1>All Books</h1>
-		<h2>All Available Books</h2>
+		<br>
+		<br>
+		<br>
+		<h2>Available Books</h2>
 		<p class="lead">Check out these books!</p>
 	</div>
 	<table class="table table-bordered table-hover">
@@ -26,22 +26,20 @@
 			<tr>
 				<th></th>
 				<th>Title</th>
+				<th>Author</th>
 				<th>Category</th>
-<!-- 				<th>Publisher</th> -->
-				<th>Description</th>
 				<th>Price</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tr th:each="book : ${books}">
 			<td><img
-				th:src="@{'/resources/images/'+${book.id}+'.png'}"
+				th:src="@{'../static/images/'+${book.id}+'.jpg'}"
 				alt="image" style="width: 100%" /></td>
 			<td th:text="${book.title}">My Book</td>	
+			<td th:text="${book.author}">Gilbert Lopez</td>
 			<td th:text="${book.category.name}">Fantasy</td>
-<!-- 			<td th:text="${book.publisher}">Warne</td> -->
-			<td th:text="${book.description}">In a hole...</td>
-			<td th:text="${book.price}">$19.99</td>
+			<td th:text="'$' + ${book.price} + ' USD'">$19.99</td>
 			<td><a th:href="@{'/books/'+${book.id}}"><span
 					class="glyphicon glyphicon-info-sign">Info</span></a></td>
 		</tr>
@@ -73,11 +71,12 @@
       </div>
     </div>
 
-    <hr>
+    <br>
 
   </div> <!-- /container -->
 
-</main>
+
+
 <div th:insert="fragments/fragments :: footer" />
 </body>
 </html>

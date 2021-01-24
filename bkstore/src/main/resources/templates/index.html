@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
-<head th:replace="fragments :: header" />
+<head th:replace="fragments/fragments :: header" />
 
 <body>
 
 <!-- Start Menu -->
-<div th:replace="fragments :: menu" />
+<div th:replace="fragments/fragments :: menu" />
 <!-- End Menu -->
 
 <main role="main">
@@ -15,8 +15,8 @@
   <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">Gilbert's Book Store</h1>
-      <p>Welcom to my Book Store!  Please browse our catalog and find rare books not found anywhere else.  If you have an account our would like to create one, please click below.  Members have privileges.</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Go to the Catalog &raquo;</a></p>
+      <p>Welcome to Gilbert's Book Store!  Please browse our catalog and find rare books not found anywhere else.  If you have an account or would like to create one, please click below.  Members have privileges.</p>
+      <p><a class="btn btn-primary btn-lg" th:href="@{'/books'}" role="button">Go to the Catalog &raquo;</a></p>
     </div>
   </div>
 
@@ -45,6 +45,6 @@
   </div> <!-- /container -->
 
 </main>
-<div th:replace="fragments :: footer" />
+<div th:replace="fragments/fragments :: footer" />
 </body>
 </html>
