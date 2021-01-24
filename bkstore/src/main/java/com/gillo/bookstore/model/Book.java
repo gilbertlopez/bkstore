@@ -11,10 +11,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -52,10 +50,7 @@ public class Book {
 	@Past
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate publishedDate;
-	
-	//@DecimalMax(value = "50", inclusive = true)
-//	@NotNull
-//	@Digits(integer = 100, fraction = 0)
+
 	
 	@Min(value = 0)
 	@Max(value = 99)
