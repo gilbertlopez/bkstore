@@ -18,7 +18,7 @@ import com.gillo.bookstore.services.BookService;
 @RequestMapping("books")
 public class AppController {
 	
-	private BookService bookService;
+	private final BookService bookService;
 
 	public AppController(BookService bookService) {
 		this.bookService = bookService;

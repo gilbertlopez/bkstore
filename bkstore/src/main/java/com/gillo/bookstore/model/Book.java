@@ -50,7 +50,6 @@ public class Book {
 	@Past
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate publishedDate;
-
 	
 	@Min(value = 0)
 	@Max(value = 99)
