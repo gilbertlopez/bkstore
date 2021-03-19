@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<div th:replace="fragments/fragments :: header"></div>
+<title>Edit Book</title>
+</head>
+
+<body>
+
+<!-- Start Menu -->
+<div th:insert="fragments/fragments :: menu" />
+<!-- End Menu -->
+
+<div class="container">
+	
+		<div class="page-header">
+			<br>
+			<br>
+			<br>
+			<h1>Edit Book</h1>
+        </div>
+        
+        <div class="container">
+		<p>Fields marked with an asterisk (*} are required </p>
+		
+         <form th:object="${book}" th:action="@{/admin/updateBook}" method="post" enctype="multipart/form-data">
+         	<input type="hidden" th:field="*{id}"/>
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                <p>Please Correct Errors Below</p>
+            </div>  
+            <div class="form-group">
+                <label for="category.name">Please select a category</label>
+				<select class="form-control selectpicker" th:field="*{category.name}">
+   					<option th:each="category : ${categories}"
+							th:value="${category}"
+							th:text="${category}">Fiction				
+					</option>   
+				</select>
+            </div>                                 
+            <div class="form-group">
+                <label for="title">* Title</label>
+                <input type="text" class="form-control" th:field="*{title}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('title')}">
+                <p th:errors="*{title}" class="text-danger">Title error</p>
+                   </span>
+            </div>
+            <div class="form-group">
+                <label for="author">* Author</label>
+                <input type="text" class="form-control" th:field="*{author}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('author')}">
+                       <p th:errors="*{author}" class="text-danger">Author error</p>
+                   </span>
+            </div>    
+            <div class="form-group">
+                <label for="publishedDate">Published Date</label>
+                <input type="date" class="form-control" th:field="*{publishedDate}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('publishedDate')}">
+                       <p th:errors="*{publishedDate}" class="text-danger">Published Date error</p>
+                   </span>
+            </div>                           
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" th:field="*{description}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('description')}">
+                       <p th:errors="*{description}" class="text-danger">Description error</p>
+                   </span>
+            </div> 
+                <div class="form-group">
+                <label for="price">* Price</label>
+                <input type="text" class="form-control" th:field="*{price}"/>
+                <p>(Format: 99.99)</p>
+                <span class="help-block" th:if="${#fields.hasErrors('price')}">
+                       <p th:errors="*{price}" class="text-danger">Price error</p>
+                   </span>
+            </div>                
+            <div class="form-group">
+                <label for="unitsInStock">* Units in Stock</label>
+                <input type="number" class="form-control" th:field="*{unitsInStock}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('unitsInStock')}">
+                       <p th:errors="*{unitsInStock}" class="text-danger">Units in stock error</p>
+                   </span>
+            </div>                       
+            <br><br>
+         <button type="submit" class="btn btn-primary">Update Book</button>   
+         <a class="btn btn-default" th:href="@{'/admin/bookInventory'}" role="button">Cancel</a>                           
+        </form>
+
+        </div>
+        <br><br>
+        <div class="row">
+             <div class="col-md-5">
+                <img             
+                th:src="@{'/book/' + ${book.id} + '/showimage'}"
+                alt="image" width="100" height="200" />	
+             </div>
+
+             <div class="col-md-5">
+                 <a class="btn btn-primary" 
+                    th:href="@{'/book/' + ${book.id} + '/image'}" >Change Image</a>
+             </div>
+         </div>
+        
+</div>
+<br>
+<div th:insert="fragments/fragments :: footer" />
+</body>
+</html>

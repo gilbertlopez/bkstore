@@ -1,5 +1,7 @@
 package com.gillo.bookstore.services;
 
+import java.util.Set;
+
 import com.gillo.bookstore.model.Category;
 
 /**
@@ -8,6 +10,10 @@ import com.gillo.bookstore.model.Category;
  * Created on Jan 19, 2021
  */
 public interface CategoryService {
+	
+	Set<Category> getAllCategories();
+	
+	Set<String> getCategoryNames();
 
 	Category getCategoryByName(String name);
 	
