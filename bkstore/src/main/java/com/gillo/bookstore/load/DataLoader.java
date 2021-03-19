@@ -2,6 +2,7 @@ package com.gillo.bookstore.load;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -12,6 +13,7 @@ import com.gillo.bookstore.model.Book;
 import com.gillo.bookstore.model.Category;
 import com.gillo.bookstore.repositories.CategoryRepository;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -21,23 +23,23 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	
 	private final CategoryRepository categoryRepository;
-
-	public DataLoader(CategoryRepository categoryRepository) {
-		this.categoryRepository = categoryRepository;
-	}
 
 	@Override
 	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 
 		log.debug("Loading Bootstrap Data");
-		Category fantasyCategory = new Category();
-		fantasyCategory.setName("Fantasy");
-		Category programmingCategory = new Category();
-		programmingCategory.setName("Programming");
+
+		Optional<Category> fantasyOptional = categoryRepository.findByName("Fantasy");
+		Category fantasyCategory = fantasyOptional.get();
+		
+		Optional<Category> programmingOptional = categoryRepository.findByName("Programming");
+		Category programmingCategory = programmingOptional.get();
+
 		
 		Book fantasyBook = new Book();	
 		fantasyBook.setTitle("The Hobbit");
