@@ -15,12 +15,12 @@ public interface BookService {
 	
 	Set<Book> getBooksByAuthor(String name);
 	
+	Set<Book> getBooksByCategory(Long id);
+
 	Book getBookById(Long id);
-	
-	void addBook(Book book);
-	
+
 	void deleteBook(Long id);
 	
-	void updateBook(Book book);
+	void saveBook(Book book);
 
 }

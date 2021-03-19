@@ -36,10 +36,10 @@
 			<td><img
 				th:src="@{'../static/images/'+${book.id}+'.jpg'}"
 				alt="image" style="width: 100%" /></td>
-			<td th:text="${book.title}">My Book</td>	
-			<td th:text="${book.author}">Gilbert Lopez</td>
-			<td th:text="${book.category.name}">Fantasy</td>
-			<td th:text="'$' + ${book.price} + ' USD'">$19.99</td>
+			<td><a th:href="@{'/books/'+${book.id}}" th:text="${book.title}">My Book</a></td>	
+			<td><a th:href="@{'/books/author/'+${book.author}}" th:text="${book.author}">Gilbert Lopez</a></td>
+			<td><a th:href="@{'/books/category/'+${book.category.id}}" th:text="${book.category.name}">Fantasy</a></td>
+			<td th:text="'$' + ${book.price}">$19.99</td>
 			<td><a th:href="@{'/books/'+${book.id}}"><span
 					class="glyphicon glyphicon-info-sign">Info</span></a></td>
 		</tr>

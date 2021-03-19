@@ -40,6 +40,13 @@ public class BookServiceImpl implements BookService {
 		bookRepository.findByAuthor(name).forEach(books::add);
 		return books;
 	}
+	
+	@Override
+	public Set<Book> getBooksByCategory(Long id) {
+		Set<Book> books = new HashSet<>();
+		bookRepository.findByCategory(id).forEach(books::add);
+		return books;
+	}
 
 	@Override
 	public Book getBookById(Long id) {
@@ -49,7 +56,7 @@ public class BookServiceImpl implements BookService {
 
 
 	@Override
-	public void addBook(Book book) {
+	public void saveBook(Book book) {
 		bookRepository.save(book);
 	}
 
@@ -60,8 +67,5 @@ public class BookServiceImpl implements BookService {
 	}
 
 
-	@Override
-	public void updateBook(Book book) {
-		bookRepository.save(book);
-	}
+
 }
