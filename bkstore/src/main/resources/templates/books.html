@@ -29,7 +29,6 @@
 				<th>Author</th>
 				<th>Category</th>
 				<th>Price</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tr th:each="book : ${books}">
@@ -40,8 +39,6 @@
 			<td><a th:href="@{'/books/author/'+${book.author}}" th:text="${book.author}">Gilbert Lopez</a></td>
 			<td><a th:href="@{'/books/category/'+${book.category.id}}" th:text="${book.category.name}">Fantasy</a></td>
 			<td th:text="'$' + ${book.price}">$19.99</td>
-			<td><a th:href="@{'/books/'+${book.id}}"><span
-					class="glyphicon glyphicon-info-sign">Info</span></a></td>
 		</tr>
 	</table>
 </div>

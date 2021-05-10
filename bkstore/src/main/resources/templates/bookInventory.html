@@ -3,7 +3,7 @@
 
 <head>
 <div th:replace="fragments/fragments :: header"></div>
-<title>Book List</title>
+<title>Book Inventory</title>
 </head>
 
 <body>
@@ -32,21 +32,30 @@
 				<th>Author</th>
 				<th>Category</th>
 				<th>Price</th>
+				<th>Description</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tr th:each="book : ${books}">
-			<td><img
+			<td><!-- <img
 				th:src="@{'/images/'+${book.id}+'.jpg'}"
-				alt="image" style="width: 100%" /></td>
+				alt="image" style="width: 50%" /> -->
+                <img 
+                th:src="@{'/book/' + ${book.id} + '/showimage'}"
+                alt="image" width="50" height="100" />
+				
+			</td>
 			<td th:text="${book.title}">My Book</td>	
 			<td th:text="${book.author}">Gilbert Lopez</td>
 			<td th:text="${book.category.name}">Fantasy</td>
-			<td th:text="'$' + ${book.price} + ' USD'">$19.99</td>
-			<td><a th:href="@{'/admin/book/'+${book.id}}"><span>Info</span></a>
+			<td th:text="'$' + ${book.price}">$19.99</td>
+			<td th:text="${book.description}">Desc...</td>
+			<td>
+<!-- 			<a th:href="@{'/admin/book/'+${book.id}}"><span>Details</span></a><br> -->
+				<a th:href="@{'/admin/editBook/'+${book.id}}"><span>Edit</span></a><br>
 				<a th:href="@{'/admin/deleteBook/'+${book.id}}" 
-					onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false">
-					<span class="fa fa-trash-alt" style="font-size:24px;"></span></a>	
+					onclick="if (!(confirm('Are you sure you want to delete this book?'))) return false">
+					<span>Delete</span></a>	
 					
 			</td>
 		</tr>
@@ -55,7 +64,6 @@
 
     <div class="container">
       <p><a class="btn btn-primary btn-sm" th:href="@{'/admin/addBook'}" role="button">Add a book &raquo;</a></p>
-      <i class="fa fa-trash"></i>
     </div>
 
 <div th:insert="fragments/fragments :: footer" />

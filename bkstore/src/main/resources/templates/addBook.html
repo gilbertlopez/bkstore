@@ -18,7 +18,7 @@
 			<br>
 			<br>
 			<br>
-			<h1>Add Book</h1>
+			<h1>Add a Book</h1>
         </div>
         
         <div class="container">
@@ -29,11 +29,13 @@
                 <p>Please Correct Errors Below</p>
             </div>  
             <div class="form-group">
-                <label for="category.name">* Category</label>
-                <input type="text" class="form-control" th:field="*{category.name}"/>
-                <span class="help-block" th:if="${#fields.hasErrors('category.name')}">
-                <p th:errors="*{category.name}" class="text-danger">Category error</p>
-                   </span>
+                <label for="category.name">Please select a category</label>
+				<select class="form-control selectpicker" th:field="*{category.name}">
+   					<option th:each="category : ${categories}"
+							th:value="${category}"
+							th:text="${category}">Fiction				
+					</option>   
+				</select>
             </div>                       
             <div class="form-group">
                 <label for="title">* Title</label>
@@ -58,7 +60,7 @@
             </div>                           
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="textarea" class="form-control" th:field="*{description}"/>
+                <input type="text" class="form-control" th:field="*{description}" />
                 <span class="help-block" th:if="${#fields.hasErrors('description')}">
                        <p th:errors="*{description}" class="text-danger">Description error</p>
                    </span>
@@ -66,25 +68,18 @@
                 <div class="form-group">
                 <label for="price">* Price</label>
                 <input type="text" class="form-control" th:field="*{price}"/>
-                <p>(Format: 999.99)</p>
+                <p>(Format: 99.99)</p>
                 <span class="help-block" th:if="${#fields.hasErrors('price')}">
                        <p th:errors="*{price}" class="text-danger">Price error</p>
                    </span>
             </div>                
             <div class="form-group">
                 <label for="unitsInStock">* Units in Stock</label>
-                <input type="text" class="form-control" th:field="*{unitsInStock}"/>
+                <input type="number" class="form-control" th:field="*{unitsInStock}"/>
                 <span class="help-block" th:if="${#fields.hasErrors('unitsInStock')}">
                        <p th:errors="*{unitsInStock}" class="text-danger">Units in stock error</p>
                    </span>
-            </div> 
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" class="form-control" th:field="*{image}"/>
-                <span class="help-block" th:if="${#fields.hasErrors('image')}">
-                       <p th:errors="*{image}" class="text-danger">Image upload error</p>
-                   </span>
-            </div>                                 
+            </div>                     
             <br><br>
          <button type="submit" class="btn btn-primary">Add Book</button>   
          <a class="btn btn-default" th:href="@{'/admin/bookInventory'}" role="button">Cancel</a>                           

@@ -3,7 +3,7 @@
 
 <head>
 <div th:replace="fragments/fragments :: header"></div>
-<title>LIst</title>
+<title>Book Information</title>
 </head>
 
 <body>
@@ -25,8 +25,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <img th:src="@{'/resources/images/'+${book.id}+'.png'}"
-						alt="image" style="width: 100%" />
+				<img 
+					src="/content/images/3.jpg"	                
+	                th:src="@{'/book/' + ${book.id} + '/showimage'}"
+	                alt="image" width="75%" />	
                 </div>
 
                 <div class="col-md-5">
@@ -39,13 +41,19 @@
                         <strong>Category</strong> : <span th:text="${book.category.name}">Fantasy</span>
                     </p>
                     <p>
-                       <strong>Published Date</strong> :  <span th:text="${book.publishedDate}">December 12, 1952</span>    
+                       <strong>Published Date</strong> :  <span th:text="${#temporals.format(book.publishedDate, 'MMM-dd-yyyy')}">December 12, 1952</span>    
                     </p>
-                    <h4 th:text="'$' + ${book.price} + ' USD'">$29.99 USD</h4>
+                    <h4 th:text="'$' + ${book.price}">$29.99</h4>
+                    <div>
+						<a th:href="@{'/books'}" >Return to Catalog</a>
+                    </div>
                 </div>
             </div>
         </div>
 </div>
+<br>
+<br>
+<br>
 <div th:insert="fragments/fragments :: footer" />
 </body>
 </html>

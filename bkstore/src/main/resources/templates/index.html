@@ -1,7 +1,12 @@
 <!doctype html>
 <html lang="en">
 
-<head th:replace="fragments/fragments :: header" />
+<!-- <head th:replace="fragments/fragments :: header" /> -->
+
+<head>
+<div th:replace="fragments/fragments :: header"></div>
+<title>Gilbert's Book Store</title>
+</head>
 
 <body>
 
@@ -13,11 +18,29 @@
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
-    <div class="container">
+<!--     <div class="container">
       <h1 class="display-3">Gilbert's Book Store</h1>
       <p>Welcome to Gilbert's Book Store!  Please browse our catalog and find rare books not found anywhere else.  If you have an account or would like to create one, please click below.  Members have privileges.</p>
       <p><a class="btn btn-primary btn-lg" th:href="@{'/books'}" role="button">Go to the Catalog &raquo;</a></p>
-    </div>
+    </div> -->
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+				<img 
+					src="/content/images/3.jpg"	                
+	                alt="image" width="75%" />	
+                </div>
+
+                <div class="col-md-5">
+					<p>Welcome!  Please browse our catalog and find rare books not found anywhere else.  If you have an account or would like to create one, please click here.  Members have privileges.</p>
+                    <div>
+						 <p><a class="btn btn-primary btn-lg" th:href="@{'/books'}" role="button">Go to the Catalog &raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
   </div>
 
   <div class="container">
@@ -46,5 +69,6 @@
 
 </main>
 <div th:replace="fragments/fragments :: footer" />
+<br>
 </body>
 </html>
