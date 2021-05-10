@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<div th:replace="fragments/fragments :: header"></div>
+<title>Image Upload Page</title>
+</head>
+
+<body>
+
+<!-- Start Menu -->
+<div th:insert="fragments/fragments :: menu" />
+<!-- End Menu -->
+
+<div class="container-fluid" style="margin-top: 20px">
+			<br>
+			<br>
+			<br>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Upload a book image</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <form th:object="${book}" th:action="@{'/book/' + ${book.getId()} + '/image'}" 
+                                		method="post" enctype="multipart/form-data"
+                                      >
+                                    <label class="control-label">Select Image File</label>
+                                    <input id="imagefile" name="imagefile" type="file" class="file">
+                                    <br><br>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div th:insert="fragments/fragments :: footer" />
+</body>
+</html>
