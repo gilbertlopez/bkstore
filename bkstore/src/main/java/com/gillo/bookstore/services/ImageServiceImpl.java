@@ -28,7 +28,6 @@ public class ImageServiceImpl implements ImageService {
 
 	@Override
 	public void saveImageFile(Long bookId, MultipartFile file) {
-		System.err.println("in ImageService-saveImage");
 		
 		Book book = bookRepository.findById(bookId).orElseThrow(BookNotFoundException::new);
 
